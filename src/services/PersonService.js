@@ -3,7 +3,7 @@ import _ from 'lodash';
 const personIndex = {};
 
 function findAll() {
-  return _.sortBy(_.values(personIndex), "name");
+  return _.sortBy(_.values(personIndex), "name.last");
 }
 
 function update(person) {

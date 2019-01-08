@@ -84,7 +84,7 @@ export default class Home extends Component<PropType> {
             <h1> People List </h1>
           </div>
           <div>
-            <ul className="list people">
+            <ul className="list people-list">
               {peopleList()}
             </ul>
           </div>

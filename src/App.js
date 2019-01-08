@@ -1,12 +1,25 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink, Switch, Redirect } from "react-router-dom";
 import Home from "./routes/Home";
 import People from "./routes/People";
+import Form from "./routes/Form";
 
 import "./App.css";
 import logo from "./logo.svg";
 
 class App extends Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      personToUpdate: {}
+    }
+  }
+
+  handleUpdate = (person) => {
+    this.setState({personToUpdate: person})
+  }
+
   render() {
     return (
       <Router>
@@ -33,8 +46,13 @@ class App extends Component {
             </div>
           </header>
           <div className="container-fluid">
-            <Route path="/" exact component={Home} />
-            <Route path="/people" exact component={People} />
+            {/* <Route path="/" exact component={Home} /> */}
+            <Switch>
+              <Route exact path="/" render={()=> <Home handleUpdate={this.handleUpdate}/>}/>
+              <Route path="/people" exact component={People} />
+              <Route path="/updateForm" render={() => <Form />} />
+              {/* <Route path="/updateForm" component={Form}/> */}
+            </Switch>
           </div>
         </div>
       </Router>

@@ -1,15 +1,18 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PersonService from "../services/PersonService";
+// import Form from "./Form";
 import '../App.css'
 
 export default class Home extends Component<PropType> {
 
- constructor(){
-   super();
+ constructor(props){
+   super(props);
 
-   this.state = {};
+   this.state = {
 
-  //  this.handleClick = this.handleClick.bind(this);
+   };
+
  }
 
   componentWillMount(){
@@ -28,28 +31,29 @@ export default class Home extends Component<PropType> {
   render() {
 
     const { data } = this.state
+    const { handleUpdate } = this.props
 
-    // function handleButtonClick(e) {
-    //   console.log(e)
+    // let handleClick = (person) => {
+    //   // let name = event.currentTarget.firstElementChild.childNodes[0].childNodes[1]
+    //   // console.log(name)
+    //   // PersonService.update(name)
+    //   this.setState({ personToUpdate: person })
+    //   // debugger
+
     // }
-
-    let handleClick = (event) => {
-      let name = event.currentTarget.firstElementChild.childNodes[0].childNodes[1]
-      console.log(name)
-      // debugger
-    }
 
     function peopleList() {
 
       return data.map(personObject => {
         // console.log(personObject)
-        return <li key={personObject.id} className="listItem" onClick={handleClick}>
+        return <li key={personObject.id} className="listItem" >
         <span className="listItem"><h6>Name: {personObject.name.first + " " + personObject.name.last}</h6></span>
         <span className="listItem"><h6>Eye Color: {personObject.eyeColor}</h6></span>
         <span className="listItem"><h6>Address: {personObject.address}</h6></span>
         <span className="listItem"><h6>Company: {personObject.company}</h6></span>
         <span className="listItem"><h6>Email: {personObject.email}</h6></span>
-        <button>Click here to edit</button>
+        <button onClick={() => handleUpdate(personObject)}><Link to="/updateForm">Update</Link></button>
+        {/* <button>Click here to edit</button> */}
         
         </li>
       })

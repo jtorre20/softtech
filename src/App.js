@@ -50,7 +50,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" render={()=> <Home handleUpdate={this.handleUpdate}/>}/>
               <Route path="/people" exact component={People} />
-              <Route path="/updateForm" render={() => <Form />} />
+              <Route path="/updateForm" render={() => <Form personToUpdate={this.state.personToUpdate}/>} />
               {/* <Route path="/updateForm" component={Form}/> */}
             </Switch>
           </div>

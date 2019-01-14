@@ -12,12 +12,19 @@ class App extends Component {
     super(props)
 
     this.state = {
-      personToUpdate: {}
+      personToUpdate: {},
+      updatedPersonObject: {}
     }
   }
 
   handleUpdate = (person) => {
     this.setState({personToUpdate: person})
+  }
+
+  sendUpdate = (person) => {
+    this.setState({updatedPersonObject: person})
+    // debugger
+    // console.log(this.state)
   }
 
   render() {
@@ -48,9 +55,9 @@ class App extends Component {
           <div className="container-fluid">
             {/* <Route path="/" exact component={Home} /> */}
             <Switch>
-              <Route exact path="/" render={()=> <Home handleUpdate={this.handleUpdate}/>}/>
+              <Route exact path="/" render={()=> <Home handleUpdate={this.handleUpdate} updatedPersonObject={this.state.updatedPersonObject}/>}/>
               <Route path="/people" exact component={People} />
-              <Route path="/updateForm" render={() => <Form personToUpdate={this.state.personToUpdate}/>} />
+              <Route path="/updateForm" render={() => <Form personToUpdate={this.state.personToUpdate} sendUpdate={this.sendUpdate} updatedPerson={this.state.updatedPersonObject}/>} />
               {/* <Route path="/updateForm" component={Form}/> */}
             </Switch>
           </div>

@@ -20,7 +20,7 @@ export default class Home extends Component<PropType> {
   }
 
 
-    async fetch(){ //ensures that the fetch function returns a promise
+    async fetch(){ //async ensures that the fetch function returns a promise
      
       const data = await PersonService.findAll() //await makes JS wait until that promise settles and returns its result
       this.setState({ data })
@@ -31,7 +31,7 @@ export default class Home extends Component<PropType> {
   render() {
 
     const { data } = this.state
-    const { handleUpdate } = this.props
+    const { handleUpdate, updatedPersonObject } = this.props
 
     // let handleClick = (person) => {
     //   // let name = event.currentTarget.firstElementChild.childNodes[0].childNodes[1]
@@ -68,7 +68,7 @@ export default class Home extends Component<PropType> {
  
     return (
       <div>
-        <h1>Front End Task</h1>
+        {/* <h1>Front End Task</h1>
         <p>
           Please create the user interface components and logic to allow users
           to edit the Person information displayed on /people using the PersonService.
@@ -77,7 +77,7 @@ export default class Home extends Component<PropType> {
           The PersonService API is as follows:
           <br /><code>PersonService.findAll()</code>
           <br /><code>PersonService.update(personObject)</code>
-        </p>
+        </p> */}
 
         <main id="main">
           <div>

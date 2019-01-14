@@ -17,15 +17,22 @@ export default class Form extends Component {
     let clone = this.state.personToUpdate
 
     if(attribute === "name") {
-      debugger
+      // debugger
     }
 
     let ele = document.getElementsByClassName(attribute)
     let updatedAttribute = ele[0].value
-    clone[attribute] = updatedAttribute
-    // debugger
-    
 
+    if(attribute === "firstName") {
+      // updatedAttribute = ele[0].value
+      clone["name"].first = updatedAttribute
+    } else if (attribute === "lastName") {
+      clone["name"].last = updatedAttribute
+    } else {
+
+      clone[attribute] = updatedAttribute
+    }
+    
     
     this.setState({
       personToUpdate: clone
@@ -47,8 +54,8 @@ export default class Form extends Component {
     return(
 
       <form className="form people-form">
-        <p>First Name: <input className="firstName"type="text" defaultValue={personToUpdate.name.first} onChange={() => this.updatePersonInfo("name")}></input></p>
-        <p>Last Name: <input className="lastName"type="text" defaultValue={personToUpdate.name.last} onChange={() => this.updatePersonInfo("name")}></input></p>
+        <p>First Name: <input className="firstName"type="text" defaultValue={personToUpdate.name.first} onChange={() => this.updatePersonInfo("firstName")}></input></p>
+        <p>Last Name: <input className="lastName"type="text" defaultValue={personToUpdate.name.last} onChange={() => this.updatePersonInfo("lastName")}></input></p>
         <p>Address: <input className="address"type="text" defaultValue={personToUpdate.address} onChange={() =>this.updatePersonInfo("address") }></input></p>
         <p>Email: <input className="email"type="text" defaultValue={personToUpdate.email} onChange={() => this.updatePersonInfo("email")}></input></p>
         <p>Eye Color: <input className="eyeColor" type="text" defaultValue={personToUpdate.eyeColor} onChange={() => this.updatePersonInfo("eyeColor")}></input></p>

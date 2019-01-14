@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, NavLink, Switch, Redirect } from "react-router-dom";
 import Home from "./routes/Home";
+import PersonService from "./services/PersonService";
 import People from "./routes/People";
 import Form from "./routes/Form";
 
@@ -55,7 +56,7 @@ class App extends Component {
           <div className="container-fluid">
             {/* <Route path="/" exact component={Home} /> */}
             <Switch>
-              <Route exact path="/" render={()=> <Home handleUpdate={this.handleUpdate} updatedPersonObject={this.state.updatedPersonObject}/>}/>
+              <Route exact path="/" render={()=> <Home personService={ PersonService } handleUpdate={this.handleUpdate} updatedPersonObject={this.state.updatedPersonObject}/>}/>
               <Route path="/people" exact component={People} />
               <Route path="/updateForm" render={() => <Form personToUpdate={this.state.personToUpdate} sendUpdate={this.sendUpdate} updatedPerson={this.state.updatedPersonObject}/>} />
               {/* <Route path="/updateForm" component={Form}/> */}

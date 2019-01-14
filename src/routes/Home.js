@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import PersonService from "../services/PersonService";
+// import PersonService from "../services/PersonService";
 // import Form from "./Form";
 import '../App.css'
 
@@ -10,7 +10,7 @@ export default class Home extends Component<PropType> {
    super(props);
 
    this.state = {
-
+    // data: null
    };
 
  }
@@ -22,8 +22,15 @@ export default class Home extends Component<PropType> {
 
     async fetch(){ //async ensures that the fetch function returns a promise
      
-      const data = await PersonService.findAll() //await makes JS wait until that promise settles and returns its result
+      const data = await this.props.personService.findAll() //await makes JS wait until that promise settles and returns its result
       this.setState({ data })
+      // debugger
+    }
+
+    updatedData = () => {
+      this.setState({
+        data: this.props.updatedPersonObject
+      })
     }
 
 
@@ -31,7 +38,7 @@ export default class Home extends Component<PropType> {
   render() {
 
     const { data } = this.state
-    const { handleUpdate, updatedPersonObject } = this.props
+    const { handleUpdate} = this.props
 
     // let handleClick = (person) => {
     //   // let name = event.currentTarget.firstElementChild.childNodes[0].childNodes[1]
@@ -46,8 +53,10 @@ export default class Home extends Component<PropType> {
 
       return data.map(personObject => {
         // console.log(personObject)
+        // debugger
         return <li key={personObject.id} className="listItem" >
-        <span className="listItem"><h6>Name: {personObject.name.first + " " + personObject.name.last}</h6></span>
+        <span className="listItem"><h6>First Name: {personObject.name.first}</h6></span>
+        <span className="listItem"><h6>Last Name: { personObject.name.last}</h6></span>
         <span className="listItem"><h6>Eye Color: {personObject.eyeColor}</h6></span>
         <span className="listItem"><h6>Address: {personObject.address}</h6></span>
         <span className="listItem"><h6>Company: {personObject.company}</h6></span>
